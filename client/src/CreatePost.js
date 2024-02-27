@@ -26,6 +26,7 @@ function CreatePost() {
 
         axios.post("/create", post).then((res) => console.log(res.data)).catch((err) => console.log(err))
 
+        navigate("posts");
     }
 
     return(

@@ -12,7 +12,7 @@ code {
     monospace;
 }
 
-.CreatePost {
+.CreatePlant {
   width: 90%;
   margin: auto auto;
   text-align: center;
@@ -25,7 +25,7 @@ code {
   margin-bottom: 1rem;
 }
 
-.FormTitle, .FormDescription{
+.FormName, .FormSpecies, .FormSunlight, .FormWater{
   margin-bottom: 1rem;
 }
 
@@ -34,13 +34,13 @@ code {
   margin-bottom: 1rem;
 }
 
-.PostsPage{
+.PlantsPage{
   width: 90%;
   margin: auto auto;
   text-align: center;
 }
 
-.PostBox{
+.PlantBox{
   border: solid lightgray 1px;
   border-radius: 8px;
   margin-bottom: 1rem;

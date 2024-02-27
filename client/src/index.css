@@ -61,3 +61,16 @@ code {
 .DeleteButton{
   width: 100%;
 }
+
+.NavBar{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  background-color: lightgreen;
+  padding: 1rem;
+  margin: auto auto;
+}
+
+.NavButton{
+  color: antiquewhite;
+}

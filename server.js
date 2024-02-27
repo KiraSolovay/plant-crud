@@ -16,13 +16,13 @@ mongoose.connect(mongoURI).catch((err) => console.log(err));
 const postSchema =mongoose.Schema({
     title: String,
     description: String
-})
+});
 
 const Post = mongoose.model("Post", postSchema);
 
 app.get("/", (req, res) => {
     res.send("Express is here")
-})
+});
 
 app.post("/create", (req, res) => {
     Post.create({
@@ -31,7 +31,7 @@ app.post("/create", (req, res) => {
     })
     .then((doc) => console.log(doc))
     .catch((err) => console.log(err));
-})
+});
 
 app.get("/posts", (req, res) => {
     Post.find()
@@ -43,8 +43,14 @@ app.delete("/delete/:id", (req, res) => {
     Post.findByIdAndDelete({_id: req.params.id})
     .then((doc) => console.log(doc))
     .catch((err)=> console.log(err));
-})
+});
+
+app.put("/update/:id", (req, res) => {
+    Post.findByIdAndUpdate({_id: req.params.id}, {title: req.body.title, description: req.body.description,})
+    .then((doc)=> console.log(doc))
+    .catch((err) => console.log(err));
+});
 
 app.listen(3001, function() {
     console.log("Server is running")
-})
+});

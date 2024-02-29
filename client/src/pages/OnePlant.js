@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Button, Form, Modal } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
-import Nav from "./Nav";
+import Nav from "../components/Nav";
 
 function OnePlant() {
     const [onePlant, setOnePlant] = useState({

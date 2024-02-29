@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
-import CreatePlant from "./CreatePlant";
-import Plants from "./Plants";
-import OnePlant from "./OnePlant";
+import App from './pages/App';
+import CreatePlant from "./pages/CreatePlant";
+import Plants from "./pages/Plants";
+import OnePlant from "./pages/OnePlant";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 

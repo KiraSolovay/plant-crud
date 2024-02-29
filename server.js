@@ -7,7 +7,7 @@ if (process.env.NODE_ENV !== "production") {
 const express = require("express");
 const cors = require("cors");
 const connectToDb = require('./config/connectToDb');
-const Plant = require('./models/plant');
+const plantsController = require(`./controllers/plantsController`)
 
 // Create Express App
 const app = express();
@@ -25,57 +25,15 @@ app.get("/", (req, res) => {
     res.send("Express is here");
 });
 
-app.post("/create", async (req, res) => {
-    try {
-        const plant = await Plant.create({
-            name: req.body.name,
-            species: req.body.species,
-            sunlight: req.body.sunlight,
-            water: req.body.water
-        });
-        res.status(201).json(plant);
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: "Failed to create plant" });
-    }
-});
+app.post("/create", plantsController.createPlant);
 
-app.get("/plants", (req, res) => {
-    Plant.find()
-        .then((plants) => res.json(plants))
-        .catch((err) => {
-            console.error(err);
-            res.status(500).json({ error: "Failed to fetch plants" });
-        });
-});
+app.get("/plants", plantsController.fetchPlants);
 
-app.delete("/delete/:id", (req, res) => {
-    Plant.findByIdAndDelete(req.params.id)
-        .then((plant) => {
-            if (!plant) {
-                return res.status(404).json({ error: "Plant not found" });
-            }
-            res.status(200).json({ message: "Plant deleted successfully" });
-        })
-        .catch((err) => {
-            console.error(err);
-            res.status(500).json({ error: "Failed to delete plant" });
-        });
-});
+app.get("/plants/:id", plantsController.fetchOnePlant);
 
-app.put("/update/:id", (req, res) => {
-    Plant.findByIdAndUpdate(req.params.id, req.body, { new: true })
-        .then((plant) => {
-            if (!plant) {
-                return res.status(404).json({ error: "Plant not found" });
-            }
-            res.status(200).json(plant);
-        })
-        .catch((err) => {
-            console.error(err);
-            res.status(500).json({ error: "Failed to update plant" });
-        });
-});
+app.delete("/delete/:id", plantsController.deletePlant);
+
+app.put("/update/:id", plantsController.updatePlant);
 
 // Start the Server
 const PORT = process.env.PORT || 5000;

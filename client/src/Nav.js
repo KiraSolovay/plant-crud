@@ -6,8 +6,8 @@ function Nav () {
 
     return(
         <div className="NavBar">
-            <Button variant="outline-dark" className ="NavButton" onClick={() => navigate("create")}>Create a Plant</Button>
-            <Button variant="outline-dark" className ="NavButton" onClick={() => navigate("plants")}>Plants Page</Button>
+            <Button variant="outline-dark" className ="NavButton" onClick={() => navigate("/create")}>Create a Plant</Button>
+            <Button variant="outline-dark" className ="NavButton" onClick={() => navigate("/plants")}>Plants Page</Button>
             <Button>Sign In</Button>
         </div>
     )

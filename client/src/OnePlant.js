@@ -2,18 +2,19 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Button, Form, Modal } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import Nav from "./Nav"
+import Nav from "./Nav";
 
-function Plants() {
-    const [plants, setPlants] = useState([]);
+function OnePlant(id) {
+    const [onePlant, setOnePlant] = useState([]);
     const [updatedPlant, setUpdatedPlant] = useState({});
     const [showModal, setShowModal] = useState(false);
     const navigate = useNavigate();
-
-    useEffect(() => {
-        axios.get("/plants")
+    
+    // SOME SORT OF ERROR HERE
+    useEffect((id) =>  {
+        axios.get(`/plants/${id}`)
             .then((res) => {
-                setPlants(res.data);
+                setOnePlant(res.data);
             })
             .catch((err) => console.log(err));
     }, []);
@@ -21,7 +22,7 @@ function Plants() {
     const deletePlant = (id) => {
         axios.delete(`/delete/${id}`)
             .then((res) => {
-                setPlants(plants.filter(plant => plant._id !== id));
+                navigate("plants")
             })
             .catch((err) => console.log(err));
     };
@@ -42,7 +43,7 @@ function Plants() {
     const saveUpdatedPlant = () => {
         axios.put(`/update/${updatedPlant._id}`, updatedPlant)
             .then((res) => {
-                setPlants(plants.map(plant => (plant._id === updatedPlant._id ? updatedPlant : plant)));
+                setOnePlant((onePlant._id === updatedPlant._id ? updatedPlant : onePlant));
                 handleClose();
             })
             .catch((err) => console.log(err));
@@ -53,9 +54,9 @@ function Plants() {
     };
 
     return (
-        <div className="PlantsPage">
+        <div className="OnePlantPage">
             <Nav/>
-            <h1>Plants Page</h1>
+            <h1>{onePlant.name}</h1>
             <Button variant="outline-dark" className="BackButton" onClick={() => navigate(-1)}>BACK</Button>
             <Modal show={showModal} onHide={handleClose}>
                 <Modal.Header closeButton>
@@ -88,6 +89,12 @@ function Plants() {
                                 name="water"
                                 value={updatedPlant.water || ""}
                                 onChange={handleChange} />
+                            <Form.Control
+                                className="FormBio"
+                                placeholder="Plant Biography"
+                                name="bio"
+                                value={updatedPlant.bio || ""}
+                                onChange={handleChange} />
                         </Form.Group>
                     </Form>
                 </Modal.Body>
@@ -96,21 +103,19 @@ function Plants() {
                     <Button variant="primary" onClick={saveUpdatedPlant}>Save Changes</Button>
                 </Modal.Footer>
             </Modal>
-            {plants.map(plant => (
-                <div className="PlantBox" key={plant._id}>
-                    <h4>{plant.name}</h4>
-                    <Button className="MoreDetailsButton" variant="outline-success" onClick={() => navigate(`/plants/${plant._id}`)}>More Details</Button>
-                    <p>{plant.species}</p>
-                    <p>{plant.sunlight}</p>
-                    <p>{plant.water}</p>
-                    <div className="ButtonsBox">
-                        <Button onClick={() => updatePlant(plant)} variant="outline-info" className="UpdateButton">UPDATE</Button>
-                        <Button onClick={() => deletePlant(plant._id)} variant="outline-danger" className="DeleteButton">DELETE</Button>
-                    </div>
+            <div className="OnePlantBox" key={onePlant._id}>
+                <h4>{onePlant.name}</h4>
+                <p>{onePlant.species}</p>
+                <p>{onePlant.sunlight}</p>
+                <p>{onePlant.water}</p>
+                <p>{onePlant.bio}</p>
+                <div className="ButtonsBox">
+                    <Button onClick={() => updatePlant(onePlant)} variant="outline-info" className="UpdateButton">UPDATE</Button>
+                    <Button onClick={() => deletePlant(onePlant._id)} variant="outline-danger" className="DeleteButton">DELETE</Button>
                 </div>
-            ))}
+            </div>
         </div>
     );
 }
 
-export default Plants;
+export default OnePlant;

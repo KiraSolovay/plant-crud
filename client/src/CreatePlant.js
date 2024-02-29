@@ -9,7 +9,8 @@ function CreatePlant() {
         name: "",
         species: "",
         sunlight: "",
-        water: ""
+        water: "",
+        bio: ""
     });
 
     const handleChange = (event) => {
@@ -62,6 +63,12 @@ function CreatePlant() {
                         name="water"
                         value={plant.water}
                         placeholder="water date"
+                        onChange={handleChange} />
+                    <Form.Control
+                        className="FormBio"
+                        name="bio"
+                        value={plant.bio}
+                        placeholder="plant biography"
                         onChange={handleChange} />
                 </Form.Group>
                 <Button className="CreateButton" variant="outline-success" onClick={handleClick}>CREATE PLANT</Button>

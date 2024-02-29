@@ -2,6 +2,7 @@ import { Button, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
+import Nav from "../components/Nav"
 
 function CreatePlant() {
     const navigate = useNavigate();
@@ -37,6 +38,7 @@ function CreatePlant() {
 
     return (
         <div className="CreatePlant">
+            <Nav/>
             <h1>Create a Plant</h1>
             <Form>
                 <Form.Group>

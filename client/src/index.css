@@ -12,7 +12,7 @@ code {
     monospace;
 }
 
-.CreatePlant {
+.CreatePlant, .Login, .PlantsPage, .Signup {
   width: 90%;
   margin: auto auto;
   text-align: center;
@@ -32,12 +32,6 @@ code {
 .CreateButton{
   width: 100%;
   margin-bottom: 1rem;
-}
-
-.PlantsPage{
-  width: 90%;
-  margin: auto auto;
-  text-align: center;
 }
 
 .PlantBox, .OnePlantBox{
@@ -76,5 +70,9 @@ code {
 }
 
 .MoreDetailsButton{
+  margin-bottom: 1rem;
+}
+
+.LoginEmail, .LoginPassword{
   margin-bottom: 1rem;
 }

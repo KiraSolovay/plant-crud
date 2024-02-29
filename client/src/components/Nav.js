@@ -8,7 +8,8 @@ function Nav () {
         <div className="NavBar">
             <Button variant="outline-dark" className ="NavButton" onClick={() => navigate("/create")}>Create a Plant</Button>
             <Button variant="outline-dark" className ="NavButton" onClick={() => navigate("/plants")}>Plants Page</Button>
-            <Button>Sign In</Button>
+            <Button variant="outline-dark" className ="NavButton" onClick={() => navigate("/login")}>Login</Button>
+            <Button variant="outline-dark" className ="NavButton" onClick={() => navigate("/signup")}>Sign Up</Button>
         </div>
     )
 }

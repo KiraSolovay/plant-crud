@@ -4,7 +4,7 @@ const User = require("../models/user");
 
 async function signup(req, res) {
     try{
-        const {email, password} = req.body;
+        const { email, password } = req.body;
         const hashedPassword = bcrypt.hashSync(password, 8);
         await User.create({ email, hashedPassword});
         res.sendStatus(200);
@@ -17,16 +17,15 @@ async function signup(req, res) {
 async function login(req, res) {
     try{
         const{email, password} = req.body;
-        await User.findOne({ email });
-        
+        const user = await User.findOne({ email });
         // check if user exists
-        if (!User) {
-            return(res.sendStatus(401))
-        }
-
-        //check if passwords match
-        const passwordMatch = bcrypt.compareSync(password, user.password);
-        if (!passwordMatch) {return(res.sendStatus(401))}
+        if (!user) {
+                return res.sendStatus(401);}
+                // check if passwords match
+                const passwordMatch = bcrypt.compareSync(password, user.password);
+                if (!passwordMatch) {
+                        return res.sendStatus(401);
+                    }
         
         // create token that expires in 30 days
         const exp = Date.now() + 1000 * 60 * 60 * 24 * 30;

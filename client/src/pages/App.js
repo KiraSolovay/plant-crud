@@ -1,10 +1,11 @@
 import Nav from "../components/Nav"
+import Plants from "../pages/Plants"
 
 function App() {
   return (
     <div className="App">
       <Nav/>
-      <h1>Welcome to Kira's Plant Tracker App!</h1>
+      <h1>Welcome!</h1>
     </div>
   );
 }

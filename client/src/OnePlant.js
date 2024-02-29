@@ -1,28 +1,35 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Button, Form, Modal } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Nav from "./Nav";
 
-function OnePlant(id) {
-    const [onePlant, setOnePlant] = useState([]);
+function OnePlant() {
+    const [onePlant, setOnePlant] = useState({
+        name: '',
+        species: '',
+        sunlight: '',
+        water: '',
+        bio: ''
+    });
     const [updatedPlant, setUpdatedPlant] = useState({});
     const [showModal, setShowModal] = useState(false);
     const navigate = useNavigate();
-    
     // SOME SORT OF ERROR HERE
-    useEffect((id) =>  {
+    const { id } = useParams();
+
+    useEffect(() =>  {
         axios.get(`/plants/${id}`)
             .then((res) => {
                 setOnePlant(res.data);
             })
             .catch((err) => console.log(err));
-    }, []);
+    }, [id]);
 
     const deletePlant = (id) => {
         axios.delete(`/delete/${id}`)
             .then((res) => {
-                navigate("plants")
+                navigate("/plants")
             })
             .catch((err) => console.log(err));
     };
@@ -104,7 +111,6 @@ function OnePlant(id) {
                 </Modal.Footer>
             </Modal>
             <div className="OnePlantBox" key={onePlant._id}>
-                <h4>{onePlant.name}</h4>
                 <p>{onePlant.species}</p>
                 <p>{onePlant.sunlight}</p>
                 <p>{onePlant.water}</p>

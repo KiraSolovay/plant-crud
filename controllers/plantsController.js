@@ -6,7 +6,8 @@ const createPlant = async (req, res) => {
             name: req.body.name,
             species: req.body.species,
             sunlight: req.body.sunlight,
-            water: req.body.water
+            water: req.body.water,
+            bio: req.body.bio
         });
         res.status(201).json(plant);
     } catch (error) {

@@ -10,7 +10,7 @@ function CreatePlant() {
         species: "",
         sunlight: "",
         water: "",
-        bio: ""
+        bio: "",
     });
 
     const handleChange = (event) => {

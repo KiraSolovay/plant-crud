@@ -10,6 +10,8 @@ function Plants() {
     const [showModal, setShowModal] = useState(false);
     const navigate = useNavigate();
 
+
+    // on start fetch all the plants!
     useEffect(() => {
         axios.get("/plants")
             .then((res) => {

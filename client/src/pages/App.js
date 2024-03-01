@@ -1,5 +1,4 @@
 import Nav from "../components/Nav"
-import Plants from "../pages/Plants"
 
 function App() {
   return (

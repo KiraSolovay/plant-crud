@@ -40,15 +40,15 @@ app.get("/logout", usersController.logout);
 
 app.get("/check-auth", requireAuth, usersController.checkAuth);
 
-app.post("/create", plantsController.createPlant);
+app.post("/create", requireAuth, plantsController.createPlant);
 
-app.get("/plants", plantsController.fetchPlants);
+app.get("/plants", requireAuth, plantsController.fetchPlants);
 
-app.get("/plants/:id", plantsController.fetchOnePlant);
+app.get("/plants/:id", requireAuth, plantsController.fetchOnePlant);
 
-app.delete("/delete/:id", plantsController.deletePlant);
+app.delete("/delete/:id", requireAuth, plantsController.deletePlant);
 
-app.put("/update/:id", plantsController.updatePlant);
+app.put("/update/:id", requireAuth, plantsController.updatePlant);
 
 // Start the Server
 const PORT = process.env.PORT || 5000;

@@ -12,7 +12,7 @@ code {
     monospace;
 }
 
-.CreatePlant, .Login, .PlantsPage, .Signup {
+.CreatePlant, .Login, .PlantsPage, .Signup, .LogoutPage{
   width: 90%;
   margin: auto auto;
   text-align: center;
@@ -73,6 +73,6 @@ code {
   margin-bottom: 1rem;
 }
 
-.LoginEmail, .LoginPassword{
+.LoginEmail, .LoginPassword, .SignupEmail, .SignupPassword{
   margin-bottom: 1rem;
 }

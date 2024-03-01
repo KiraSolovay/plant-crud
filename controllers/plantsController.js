@@ -7,7 +7,8 @@ const createPlant = async (req, res) => {
             species: req.body.species,
             sunlight: req.body.sunlight,
             water: req.body.water,
-            bio: req.body.bio
+            bio: req.body.bio,
+            user: req.user._id,
         });
         res.status(201).json(plant);
     } catch (error) {
@@ -17,7 +18,7 @@ const createPlant = async (req, res) => {
 }
 
 const fetchPlants = (req, res) => {
-    Plant.find()
+    Plant.find({user: req.user._id})
         .then((plants) => res.json(plants))
         .catch((err) => {
             console.error(err);
@@ -26,7 +27,7 @@ const fetchPlants = (req, res) => {
 }
 
 const fetchOnePlant = async (req, res) => {
-    await Plant.findById(req.params.id).then((onePlant) => {
+    await Plant.findOne({_id: req.params.id, user: req.user._id}).then((onePlant) => {
         if (!onePlant) {
             return res.status(404).json({ error : "Plant not found" });
         }
@@ -40,7 +41,7 @@ const fetchOnePlant = async (req, res) => {
 }
 
 const deletePlant = (req, res) => {
-    Plant.findByIdAndDelete(req.params.id)
+    Plant.findOneAndDelete({_id: req.params.id, user: req.user._id})
         .then((plant) => {
             if (!plant) {
                 return res.status(404).json({ error: "Plant not found" });
@@ -54,7 +55,7 @@ const deletePlant = (req, res) => {
 };
 
 const updatePlant = (req, res) => {
-    Plant.findByIdAndUpdate(req.params.id, req.body, { new: true })
+    Plant.findOneAndUpdate({_id: req.params.id, user: req.user._id}, req.body, { new: true })
         .then((plant) => {
             if (!plant) {
                 return res.status(404).json({ error: "Plant not found" });

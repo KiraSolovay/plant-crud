@@ -3,16 +3,17 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/user");
 
 async function signup(req, res) {
-    try{
+    try {
         const { email, password } = req.body;
         const hashedPassword = bcrypt.hashSync(password, 8);
-        await User.create({ email, hashedPassword});
+        await User.create({ email, password: hashedPassword }); 
         res.sendStatus(200);
     } catch(err) {
-        console.log(err);
+        console.error(err);
         res.sendStatus(400);
     }
 }
+
 
 async function login(req, res) {
     try{
@@ -24,8 +25,7 @@ async function login(req, res) {
                 // check if passwords match
                 const passwordMatch = bcrypt.compareSync(password, user.password);
                 if (!passwordMatch) {
-                        return res.sendStatus(401);
-                    }
+                        return res.sendStatus(401);}
         
         // create token that expires in 30 days
         const exp = Date.now() + 1000 * 60 * 60 * 24 * 30;

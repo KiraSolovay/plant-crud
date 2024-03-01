@@ -10,6 +10,7 @@ function Nav () {
             <Button variant="outline-dark" className ="NavButton" onClick={() => navigate("/plants")}>Plants Page</Button>
             <Button variant="outline-dark" className ="NavButton" onClick={() => navigate("/login")}>Login</Button>
             <Button variant="outline-dark" className ="NavButton" onClick={() => navigate("/signup")}>Sign Up</Button>
+            <Button variant="outline-dark" className ="NavButton" onClick={() => navigate("/logout")}>Log Out</Button>
         </div>
     )
 }

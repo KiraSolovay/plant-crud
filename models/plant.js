@@ -5,7 +5,11 @@ const plantSchema = new mongoose.Schema({
     species: String,
     sunlight: String,
     water: String,
-    bio: String
+    bio: String,
+    user: {
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: "User"
+    }
 })
 
 const Plant = mongoose.model("Plant", plantSchema);

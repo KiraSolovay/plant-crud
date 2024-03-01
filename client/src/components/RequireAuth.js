@@ -1,37 +1,29 @@
 import React, { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
-import axios from "axios";
+import { checkAuth } from "./Auth";
 
-export default function RequireAuth(props) {
-    const [loggedIn, setLoggedIn] = useState(null);
+export default function RequireAuth({ loggedIn, setLoggedIn, children }) {
+    const [authChecked, setAuthChecked] = useState(false);
 
-
-    const checkAuth = async () => {
-        try{
-            await axios.get("/check-auth", {withCredentials: true});
-            setLoggedIn(true);
-        }catch(err){
-            setLoggedIn(false);
-        }
-    }
     useEffect(() => {
         const fetchAuthStatus = async () => {
-            const isAuthenticated = await checkAuth(); 
+            const isAuthenticated = await checkAuth();
+            setAuthChecked(true);
             setLoggedIn(isAuthenticated);
         };
-        
-        if (loggedIn === null) {
+
+        if (!authChecked) {
             fetchAuthStatus();
         }
-    }, [loggedIn]);
+    }, [authChecked, setLoggedIn]);
 
-    if (loggedIn === null) {
+    if (!authChecked) {
         return <div>Loading...</div>;
     }
 
-    if (loggedIn === false) {
+    if (!loggedIn) {
         return <Navigate to="/login" />;
     }
 
-    return <div>{props.children}</div>;
+    return <div>{children}</div>;
 }

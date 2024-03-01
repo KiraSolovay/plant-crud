@@ -13,7 +13,7 @@ code {
 }
 
 .CreatePlant, .Login, .PlantsPage, .Signup, .LogoutPage{
-  width: 90%;
+  padding: 1rem;
   margin: auto auto;
   text-align: center;
 }
@@ -39,6 +39,7 @@ code {
   border-radius: 8px;
   margin-bottom: 1rem;
   padding: 1rem;
+  background-color: antiquewhite;
 }
 
 .ButtonsBox{
@@ -63,6 +64,8 @@ code {
   background-color: lightgreen;
   padding: 1rem;
   margin: auto auto;
+  border: solid 4px saddlebrown;
+  border-radius: 10px;
 }
 
 .NavButton{
@@ -76,3 +79,4 @@ code {
 .LoginEmail, .LoginPassword, .SignupEmail, .SignupPassword{
   margin-bottom: 1rem;
 }
+

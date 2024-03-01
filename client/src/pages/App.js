@@ -4,7 +4,7 @@ function App() {
   return (
     <div className="App">
       <Nav/>
-      <h1>Welcome!</h1>
+      <h1>Welcome! Please log in to create and view your plants.</h1>
     </div>
   );
 }

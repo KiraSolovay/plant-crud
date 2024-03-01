@@ -18,7 +18,7 @@ export default function RequireAuth({ loggedIn, setLoggedIn, children }) {
     }, [authChecked, setLoggedIn]);
 
     if (!authChecked) {
-        return <div>Loading...</div>;
+        return <h1>Loading...</h1>;
     }
 
     if (!loggedIn) {

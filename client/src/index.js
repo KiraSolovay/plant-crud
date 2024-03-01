@@ -19,6 +19,7 @@ function AuthProvider() {
     const [loggedIn, setLoggedIn] = useState(null);
 
     return (
+      <div className="appDiv">
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<App />} />
@@ -30,6 +31,7 @@ function AuthProvider() {
                 <Route path="/signup" element={<Signup />} />
             </Routes>
         </BrowserRouter>
+      </div>
     );
 }
 
